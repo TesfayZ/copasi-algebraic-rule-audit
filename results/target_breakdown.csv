@@ -1,0 +1,6 @@
+target_type,match,numerical_drift,wrong,silent_omission,crash
+compartment,,,,9,
+other / extension alias,,,,5,
+parameter,12,2,10,72,7
+reaction,,,,2,
+species,112,21,102,64,1

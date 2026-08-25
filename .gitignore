@@ -1,0 +1,9 @@
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Local dependency/test-suite checkout
+sbml-test-suite/
+
+# If this is the folder name you meant
+pycasche/

@@ -1,0 +1,11 @@
+# Pinned to the versions used for the audit reported in the paper.
+# Install with: pip install -r requirements.txt --break-system-packages
+# (the --break-system-packages flag is only needed on externally-managed
+#  Python environments such as recent Debian/Ubuntu images; omit it on a
+#  virtualenv or conda environment).
+
+python-copasi==4.46.300
+tellurium==2.2.13
+libroadrunner==2.10.0
+python-libsbml==5.21.1
+numpy==2.4.4
