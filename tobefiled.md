@@ -30,9 +30,14 @@ Environment: `python-copasi` 4.46.300, `libroadrunner` 2.10.0,
 `tellurium` 2.2.13, `python-libsbml` 5.21.1 (all current PyPI releases
 at audit time; see `requirements.txt`). COPASI accessed via
 `COPASI.CRootContainer` / `CTimeSeries` Python bindings,
-`CTaskEnum.Method_deterministic` time-course task. **Not yet tested**:
-COPASI GUI, non-deterministic task types, "Reduce Model" setting -- see
-Open Questions.
+`CTaskEnum.Method_deterministic` time-course task. **Not tested via this
+script-driven pipeline**: COPASI GUI, non-deterministic task types,
+"Reduce Model" setting. The GUI and "Reduce Model" setting were
+subsequently checked by hand, on the current COPASI release (4.47.309,
+no Python bindings published for it at the time of this audit); see
+`GUI_VERIFICATION_4.47.309.md` for what was and was not confirmed
+this way. Non-deterministic task types remain untested by either
+approach.
 
 ---
 
@@ -87,8 +92,13 @@ every configuration the queue is empty except for one unrelated message
 addresses, and does not resolve in COPASI's favor, an apparent tension
 with COPASI's own 2006 paper (Hoops et al., *Bioinformatics* 22(24),
 2006), which states the user is warned when a model contains
-unsupported SBML features. We did not test the GUI directly and cannot
-rule out a GUI-only warning path outside this message-queue mechanism.
+unsupported SBML features, and with COPASI's own current documentation
+(Support/User_Manual/Error_Messages/SBML, message "SBML (3)"), which
+states the same thing more specifically for algebraic rules. **Update:**
+the GUI-only warning path this section originally left open was
+subsequently checked by hand, on the current COPASI release (4.47.309):
+no warning dialog appears at import for this or three other cases
+tested. See `GUI_VERIFICATION_4.47.309.md`.
 
 **Why it is sometimes invisible in the output trajectory.**
 Whether this substitution corrupts the reported trajectory depends on
@@ -144,6 +154,13 @@ that most cases carrying this status also had other, present variables,
 some correct and some independently wrong. That distinction matters for
 `results/target_breakdown.csv`, which reports it, but not for this
 disclosure, which is about the omission mechanism itself.
+
+**Update:** a species-level instance of this mechanism was subsequently
+inspected directly in the COPASI GUI (case 00039; see
+`GUI_VERIFICATION_4.47.309.md`), showing the same absence of any
+stored expression for the omitted quantity that Bug 1 documented for a
+compartment, and a downstream consequence on a second, coupled variable
+in the same case.
 
 ---
 

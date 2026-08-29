@@ -320,3 +320,13 @@ save it as a JSON array of case IDs, and pass it to
 Not yet filed against the COPASI issue tracker. Open findings, the
 filing checklist, and open questions for maintainers are in
 `tobefiled.md`.
+
+`GUI_VERIFICATION_4.47.309.md` documents a follow-up manual check,
+performed in the COPASI 4.47.309 Desktop GUI (the current stable release
+as of this writing; no Python bindings are published for it yet, so it
+could not be driven through the scripted pipeline above). It reproduces
+Bug 1 on a second entity type and confirms it visually in COPASI's own
+Differential Equations view, extends Bug 2's root cause to a
+species-level case, and checks two things the API-only pipeline could
+not: whether the GUI shows a warning the API doesn't, and whether the
+"Reduce Model" setting has any effect.
