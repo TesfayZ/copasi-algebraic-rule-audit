@@ -1,6 +1,6 @@
 # COPASI SBML Algebraic-Rule Audit
 
-This repository accompanies the paper []. It contains the full audit pipeline: corpus selection,
+This repository accompanies the paper [Silent Loss of SBML Algebraic Constraints in COPASI]. It contains the full audit pipeline: corpus selection,
 per-case simulation harnesses for both simulators under test, root-cause
 verification scripts, and every result file the manuscript reports.
 
@@ -180,10 +180,13 @@ run_one_case_v2.py             : per-case COPASI harness (canonical-ID
                                   to evaluate the algebraic rule's own
                                   residual directly from COPASI's output
                                   time series (algebraic_residual), which
-                                  the paper reports is unobtainable for
-                                  all 106 cases because at least one
-                                  symbol the rule depends on is always
-                                  among the omitted variables; and, per
+                                  the paper reports is unobtainable in 98
+                                  of 106 cases because a needed symbol is
+                                  either an omitted requested variable or
+                                  the rule's own governed quantity, never
+                                  tracked as output at all (the remaining
+                                  8 cases crashed or fell inside an
+                                  uninspected comp-package submodel); and, per
                                   requested variable, its own match /
                                   numerical-drift / wrong / missing
                                   status (variable_results), used by
@@ -247,9 +250,10 @@ verify_compartment_defect.py   : queries COPASI's internal compartment
 verify_warning_channel.py      : queries COPASI's CModelEntity.Status
                                   enum and CCopasiMessage queue
                                   directly for one representative case
-                                  (00547); the key evidence for the
-                                  "no representational slot exists,
-                                  and no warning is raised" claim
+                                  (00547); the key evidence that no
+                                  status exists for an algebraically
+                                  governed quantity, and no warning
+                                  is raised
 
 build_algebraic2.py            : minimal hand-built model showing the
                                   silent-omission failure propagating
