@@ -1,6 +1,6 @@
 # COPASI SBML Algebraic-Rule Audit
 
-This repository accompanies the paper [Silent Loss of SBML Algebraic Constraints in COPASI]. It contains the full audit pipeline: corpus selection,
+This repository accompanies the paper [Silent Loss of SBML Algebraic Constraints in COPASI](https://doi.org/10.5281/zenodo.22651187). It contains the full audit pipeline: corpus selection,
 per-case simulation harnesses for both simulators under test, root-cause
 verification scripts, and every result file the manuscript reports.
 
