@@ -1,6 +1,6 @@
 # To Be Filed: Verified Faults for Upstream Disclosure (v4, post cross-simulator audit)
 
-Status: **TO BE FILED**. This is v4 of this document; the findings 
+Status: **FILED**. This is v4 of this document; the findings 
 below are unchanged from filing. See "Filing history" at the end of 
 this document for what happened after submission, on both channels used. 
 v1's numbers predate the harness self-audit in the paper's Results section.
