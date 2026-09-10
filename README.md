@@ -321,16 +321,16 @@ save it as a JSON array of case IDs, and pass it to
 
 ## Status
 
-Not yet filed against the COPASI issue tracker. Open findings, the
-filing checklist, and open questions for maintainers are in
-`tobefiled.md`.
+Filed. All four bugs (and the corpus-construction note, Bug 5) were submitted to the COPASI project across two channels:
 
-`GUI_VERIFICATION_4.47.309.md` documents a follow-up manual check,
-performed in the COPASI 4.47.309 Desktop GUI (the current stable release
-as of this writing; no Python bindings are published for it yet, so it
-could not be driven through the scripted pipeline above). It reproduces
-Bug 1 on a second entity type and confirms it visually in COPASI's own
-Differential Equations view, extends Bug 2's root cause to a
-species-level case, and checks two things the API-only pipeline could
-not: whether the GUI shows a warning the API doesn't, and whether the
-"Reduce Model" setting has any effect.
+GitHub (copasi/COPASI repository): filed as issues #18 (Bug 4, segfault), #19 (Bug 1, root cause), and #20 (Bugs 2-3, silent omission and present-but-wrong values). The maintainers responded constructively on #18, confirming they would investigate the crash. On #19 the response was that COPASI does not support AlgebraicRule and users should be aware of that, without addressing the report's actual claim: that the documented import-time warning for this case does not appear to reach CCopasiMessage or the GUI, and that the substitution is undetectable from output alone. #20 received no response.
+
+Shortly after filing, GitHub Issues were disabled on the copasi/COPASI repository and issues #18-#20 are no longer publicly accessible. The project's README was also updated to direct feedback and bug reports to the official Bugzilla tracker rather than GitHub. We don't know what prompted either change and aren't asserting a connection between the timing and our filing.
+
+Bugzilla (the project's official tracker, tracker.copasi.org): filed as bugs #3348 (segfault), #3349 (root cause), #3350 (omission and wrong values), each referencing the corresponding GitHub issue for full detail. These remain accessible as of this writing.
+
+A maintainer also opened an issue on this repository labeling it "invalid project," without responding to our reply addressing the distinction between "COPASI doesn't support AlgebraicRule" (true, and never disputed here) and "COPASI silently produces a plausible-looking wrong result when one is present, with no warning through any channel we could find" (the actual subject of this audit).
+
+Full filing history, the original filing checklist, and the exact text submitted to each tracker are in tobefiled.md.
+
+GUI_VERIFICATION_4.47.309.md documents a follow-up manual check, performed in the COPASI 4.47.309 Desktop GUI (the current stable release as of this writing; no Python bindings are published for it yet, so it could not be driven through the scripted pipeline above). It reproduces Bug 1 on a second entity type and confirms it visually in COPASI's own Differential Equations view, extends Bug 2's root cause to a species-level case, and checks two things the API-only pipeline could not: whether the GUI shows a warning the API doesn't, and whether the "Reduce Model" setting has any effect.

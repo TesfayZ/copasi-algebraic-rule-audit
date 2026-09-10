@@ -1,9 +1,9 @@
 # To Be Filed: Verified Faults for Upstream Disclosure (v4, post cross-simulator audit)
 
-Status: **TO BE FILED**. To be filed with the COPASI issue tracker
-(https://github.com/copasi/COPASI/issues) After posting the
-accompanying manuscript to bioRxiv. This is v4 of this document. v1's
-numbers predate the harness self-audit in the paper's Results section.
+Status: **TO BE FILED**. This is v4 of this document; the findings 
+below are unchanged from filing. See "Filing history" at the end of 
+this document for what happened after submission, on both channels used. 
+v1's numbers predate the harness self-audit in the paper's Results section.
 v2 reflected that correction only (7 pass / 82 silent omission / 16
 present-but-wrong / 2 crash, out of 107 cases). v3 reflected a second,
 independent correction found while extending the audit to a control
@@ -302,3 +302,20 @@ trust the numbers being reported.
 Full narrative in the accompanying manuscript, Results section
 "Harness self-audit" and "Building the corpus, correctly."
 
+## Filing history
+
+Filed on two channels, in this order.
+
+GitHub (copasi/COPASI repository, github.com/copasi/COPASI/issues, which at filing time was open and listed as the repository's issue tracker): Bug 4 (segfault) as issue #18, Bug 1 (root cause) as issue #19, Bugs 2-3 (silent omission, present-but-wrong) as issue #20, in that order, each cross-referencing the others.
+
+Maintainer response on #18: acknowledged the report and said they would look into why the crash occurs. No further update at time of writing.
+
+Maintainer response on #19: that COPASI does not support AlgebraicRule and users should know this, closing with "what would you have liked to have happen instead." We replied pointing to the specific claim being tested, not disputed: verify_warning_channel.py checks CCopasiMessage.size() at three pipeline checkpoints on the exact case discussed (00547), under both setIsGUI(True) and (False), and finds it empty throughout; the 4.47.309 GUI shows no dialog either. The response did not dispute this finding and instead restated that COPASI does not support AlgebraicRule, which this report has never claimed otherwise and states explicitly in Bug 1's "how it should be corrected" section above.
+
+#20 received no maintainer response.
+
+Some time after filing, GitHub Issues were disabled on the copasi/COPASI repository. Issues #18, #19, and #20 are no longer publicly visible as a result. The repository's README was also updated to direct bug reports to the project's Bugzilla tracker (tracker.copasi.org) and mailing list rather than GitHub. We do not know what prompted either change and are not claiming a causal link to this filing; we note the sequence for the record.
+
+Bugzilla (tracker.copasi.org, the tracker the project's README names as its designated channel): filed as bug #3348 (segfault, mirroring #18), bug #3349 (root cause, mirroring #19), and bug #3350 (omission and wrong values, mirroring #20), each linking back to its GitHub counterpart for full detail and attachments. All three remain accessible at tracker.copasi.org as of this writing.
+
+Separately, a maintainer opened an issue on this repository (not the COPASI repository) stating the project is "invalid" on the grounds that COPASI does not support AlgebraicRule. We replied there pointing to the specific sections of this document and the specific scripts (verify_warning_channel.py, verify_compartment_defect.py, build_algebraic2.py) establishing that the report is about silent, undetectable behavior when an unsupported construct is present, not about the absence of support itself, and noting how libRoadRunner and Tellurium handle the identical input safely by contrast. No response followed as of writing this.
